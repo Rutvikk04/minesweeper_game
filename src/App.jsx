@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import Nav from './Components/Nav';
+import Instructions from './Components/Instructions';
 
 function App() {
   const boxes = Array(25).fill(null); // Create an array with 25 null elements
@@ -52,8 +53,9 @@ function App() {
   return (
     <>
       <Nav />
-      <div className='grid place-content-center  h-screen'>
-        <section className='text-white flex justify-between'>
+      <Instructions/>
+      <div className='flex flex-col items-center mt-16'>
+        <section className='text-white flex justify-between max-w-96 space-x-10'>
           <div>
             Mines Count: <select value={numOfMines} onChange={(e) => setMineData({ ...mineData, numOfMines: e.target.value })} className='bg-white text-black rounded-md'>
               <option value={1} className='bg-white text-green-500'>1</option>
@@ -65,7 +67,7 @@ function App() {
             Your Score:<span className='text-green-500 font-semibold'>{openedBox?.length}</span>
           </div>
         </section>
-        <div className='grid grid-cols-5 border-2 border-gray-500 p-3 rounded-md'>
+        <div className='grid grid-cols-5 max-w-96 border-2 border-gray-500 p-3 rounded-md'>
           {boxes.map((_, index) => (
             <div key={index} onClick={(e) => checkBoxEntry(index)} className={`h-10 w-10 bg-slate-500 rounded-sm hover:scale-105 hover:cursor-pointer m-2`}>
               {
